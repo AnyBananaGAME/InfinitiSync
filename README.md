@@ -51,5 +51,8 @@ _ http://localhost:3000//api/drop
     ```js
       player.world.world.getBlock(position);
     ```
-
+ # Credits.
+  - [SineVector241](https://github.com/SineVector241) For showing some examples of Physics.
+  - [CreeperG16](https://github.com/CreeperG16) For some types. in ./src/types/types.d.ts
+  - baghii [discord name] For 1.20.10 blocks list
 
