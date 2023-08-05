@@ -46,7 +46,8 @@ _ http://localhost:3000//api/drop
       player.getPosition();
     ```
   - Get block in world.
-    - {Array} position {x,y,z}
+    - {Array} position
+      - The Array must be {x,y,z} positions
     ```js
       player.world.world.getBlock(position);
     ```
