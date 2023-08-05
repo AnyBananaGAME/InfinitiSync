@@ -9,3 +9,37 @@
 
 > [!IMPORTANT]
 > This tool was only tested on MCBE 1.20.10 and most likely will **ONLY** Work on 1.20.10+ and might break at any version above.
+
+> [!NOTE]
+> This project is strictly non-commercial and not for distribution with any exchange. Making money from this project is prohibited. Please respect these terms and use the project responsibly.
+
+
+# API
+  - Sending messages.
+    - {String} message
+    ```js
+      player.sendMessage(message);
+    ```
+  - Dropping items.
+    - {Number} count
+    - {Number} Slot
+    ```js
+      player.dropItem(count, slot);
+    ```
+  - Set Item in slot.
+    > [!WARNING]
+    > You should not use this if you dont know what it may cause
+    - {Number} slot
+    - {Array} item
+    ```js
+      player.setSlot(slot, item);
+    ```
+  - Get the item from slot.
+    - {Number} slot
+    ```js
+      player.getSlot(slot);
+    ```
+  - Get Players position
+    ```js
+      player.getPosition();
+    ```
