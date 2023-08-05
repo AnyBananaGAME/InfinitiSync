@@ -1,1 +1,45 @@
 # InfinitiSync
+
+
+> [!WARNING]
+> This is not a fully working/finished project so don't blame me for anything that happens.
+
+
+## To contribute just open a PR it will be reviewed and if it works and is clear it will be merged and you will be credited. (Formatting code isnt included)
+
+> [!IMPORTANT]
+> This tool was only tested on MCBE 1.20.10 and most likely will **ONLY** Work on 1.20.10+ and might break at any version above.
+
+> [!NOTE]
+> This project is strictly non-commercial and not for distribution with any exchange. Making money from this project is prohibited. Please respect these terms and use the project responsibly.
+
+
+# API
+  - Sending messages.
+    - {String} message
+    ```js
+      player.sendMessage(message);
+    ```
+  - Dropping items.
+    - {Number} count
+    - {Number} Slot
+    ```js
+      player.dropItem(count, slot);
+    ```
+  - Set Item in slot.
+    > [!WARNING]
+    > You should not use this if you dont know what it may cause
+    - {Number} slot
+    - {Array} item
+    ```js
+      player.setSlot(slot, item);
+    ```
+  - Get the item from slot.
+    - {Number} slot
+    ```js
+      player.getSlot(slot);
+    ```
+  - Get Players position
+    ```js
+      player.getPosition();
+    ```
