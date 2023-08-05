@@ -1,5 +1,4 @@
-# InfinitiSync
-`#RRGGBB`
+# InfinitiSync `#0969DA`	
 
 > [!WARNING]
 > This is not a fully working/finished project so don't blame me for anything that happens.
