@@ -1,5 +1,5 @@
 # InfinitiSync
-
+#RRGGBB
 
 > [!WARNING]
 > This is not a fully working/finished project so don't blame me for anything that happens.
