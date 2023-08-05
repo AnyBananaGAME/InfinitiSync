@@ -20,12 +20,14 @@ Default link will be: http://localhost:3000/api/drop
 # API
   - Sending messages.
     - `{String} message`
+
     ```js
       player.sendMessage(message);
     ```
   - Dropping items.
     - `{Number} count`
     - `{Number} Slot`
+
     ```js
       player.dropItem(count, slot);
     ```
@@ -35,21 +37,25 @@ Default link will be: http://localhost:3000/api/drop
     > You should not use this if you dont know what it may cause
     - `{Number} slot`
     - `{Array} item`
+
     ```js
       player.setSlot(slot, item);
     ```
   - Get the item from slot.
     - `{Number} slot`
+
     ```js
       player.getSlot(slot);
     ```
   - Get Players position
+
     ```js
       player.getPosition();
     ```
   - Get block in world.
     - `{Array} position`
       - The Array must be {x,y,z} positions
+
     ```js
       player.world.world.getBlock(position);
     ```
