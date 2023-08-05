@@ -163,7 +163,7 @@ class Player {
      * @param {*} packet
      */
   getPosition() {
-    return this.position;
+    return this.playerState.pos;
   }
 
   /** 
