@@ -15,7 +15,7 @@ const mcData = require("minecraft-data")(version.version.majorVersion);
 const block = require('prismarine-block')(version);
 
 const client = createClient({
-    host: "192.168.1.58",
+    host: "ServerIP",
     username: "ImoHigh",
     port: 19132,
     profilesFolder: "./src/Tokens",
