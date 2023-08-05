@@ -9,11 +9,14 @@
 
 > [!IMPORTANT]
 > This tool was only tested on MCBE 1.20.10 and most likely will **ONLY** Work on 1.20.10+ and might break at any version above.
+> This was only testes on PocketMineMP. And most stuff wont work or may crash on Non PMMP servers.
 
 > [!NOTE]
 > This project is strictly non-commercial and not for distribution with any exchange. Making money from this project is prohibited. Please respect these terms and use the project responsibly.
 
-
+# Cool stuff?
+_BetterIS.js file (plugin) Will start an Express server that will allow you to view players inventory and drop items using buttons.
+_ http://localhost:3000//api/drop
 # API
   - Sending messages.
     - {String} message
@@ -43,3 +46,10 @@
     ```js
       player.getPosition();
     ```
+  - Get block in world.
+    - {Array} position {x,y,z}
+    ```js
+      player.world.world.getBlock(position);
+    ```
+
+
