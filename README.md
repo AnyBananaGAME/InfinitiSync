@@ -14,8 +14,9 @@
 > This project is strictly non-commercial and not for distribution with any exchange. Making money from this project is prohibited. Please respect these terms and use the project responsibly.
 
 # Cool stuff?
-_BetterIS.js file (plugin) Will start an Express server that will allow you to view players inventory and drop items using buttons.
-_ http://localhost:3000//api/drop
+BetterIS.js file (plugin) Will start an Express server that will allow you to view players inventory and drop items using buttons.
+
+Default link will be: http://localhost:3000/api/drop
 # API
   - Sending messages.
     - {String} message
