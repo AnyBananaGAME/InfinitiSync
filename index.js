@@ -16,7 +16,7 @@ const block = require('prismarine-block')(version);
 
 const client = createClient({
     host: "ServerIP",
-    username: "ImoHigh",
+    username: "UserName",
     port: 19132,
     profilesFolder: "./src/Tokens",
     raknetBackend: "raknet-native",
