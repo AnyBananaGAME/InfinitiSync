@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Inventory Content</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            position: static;
+            margin: 20px;
+            margin-left: 25%;
+        }
+
+        h1 {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: x-large;
+            text-align: start;
+            margin-left: 25%;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 700px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .show-more {
+            cursor: pointer;
+            color: darkgray;
+            font-weight: bold;
+            text-decoration: underline;
+            display: block;
+            width: 70px;
+            white-space: nowrap;
+            overflow: visible;
+            text-overflow: ellipsis;
+        }
+
+        .hide-button {
+            cursor: pointer;
+            color: darkgray;
+            font-weight: bold;
+            text-overflow: ellipsis;
+            text-decoration: underline;
+        }
+
+        .input-container {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            max-width: 600px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-box {
+            margin: 5px;
+        }
+
+        .fetch-button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+
+        .fetch-button[disabled] {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .fetch-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Inventory Content</h1>
+
+    <div class="input-container">
+        <div class="input-box">
+            <label for="slotInput">Slot:</label>
+            <input type="number" id="slotInput" />
+        </div>
+
+        <div class="input-box">
+            <label for="countInput">Count:</label>
+            <input type="number" id="countInput" />
+        </div>
+
+        <button class="fetch-button" onclick="fetchData()">Drop</button>
+    </div>
+
+    <table id="dataTable">
+        <tr>
+            <th>Slot</th>
+            <th>Network ID</th>
+            <th>Count</th>
+            <th>Metadata</th>
+            <th>Has Stack ID</th>
+            <th>Stack ID</th>
+            <th>Block Runtime ID</th>
+            <th>Extra Data</th>
+
+        </tr>
+    </table>
+
+    <script>
+        function formatExtra(extra) {
+            return JSON.stringify({ extra });
+        }
+
+        function toggleExtraCell(cell, extra) {
+            if (cell.textContent === 'Show more') {
+                cell.textContent = '';
+                const hideButton = document.createElement('button');
+                hideButton.classList.add('hide-button');
+                hideButton.textContent = 'Hide';
+                cell.appendChild(hideButton);
+
+                hideButton.addEventListener('click', () => {
+                    toggleExtraCell(cell, extra);
+                });
+
+                const extraContent = document.createElement('div');
+                extraContent.textContent = formatExtra(extra);
+                cell.appendChild(extraContent);
+            } else {
+                cell.textContent = '';
+                const showMoreLink = document.createElement('a');
+                showMoreLink.classList.add('show-more');
+                showMoreLink.textContent = 'Show more';
+                cell.appendChild(showMoreLink);
+
+                showMoreLink.addEventListener('click', () => {
+                    toggleExtraCell(cell, extra);
+                });
+            }
+        }
+
+        async function fetchData() {
+            const slotInput = document.getElementById('slotInput').value;
+            const countInput = document.getElementById('countInput').value;
+
+            const apiUrl = 'http://localhost:3000/api/drop';
+
+            const jsonData = {
+                slot: slotInput,
+                count: countInput,
+            };
+
+            const dropButton = document.querySelector('.fetch-button');
+            dropButton.disabled = true;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(jsonData)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                console.log(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                dropButton.disabled = false;
+            }
+        }
+
+        async function fetchAndUpdateData() {
+            try {
+                const response = await fetch('http://localhost:3000/api/data');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                updateTable(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        function updateTable(data) {
+            const dataTable = document.getElementById('dataTable');
+            dataTable.innerHTML = '';
+
+            let slot = 0;
+
+            data.forEach(item => {
+                const row = dataTable.insertRow();
+                const slotCell = row.insertCell();
+                slotCell.textContent = slot++;
+                Object.entries(item).forEach(([key, value]) => {
+                    const cell = row.insertCell();
+                    if (key === 'extra') {
+                        const showMoreLink = document.createElement('a');
+                        showMoreLink.classList.add('show-more');
+                        showMoreLink.textContent = 'Show more';
+                        cell.appendChild(showMoreLink);
+
+                        showMoreLink.addEventListener('click', () => {
+                            toggleExtraCell(cell, value);
+                        });
+                    } else {
+                        cell.textContent = value;
+                    }
+                });
+            });
+        }
+
+        fetchAndUpdateData();
+        setInterval(fetchAndUpdateData, 5000);
+
+    </script>
+</body>
+
+</html>
