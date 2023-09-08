@@ -3,3 +3,4 @@ node_modules/*
 !node_modules/minecraft-data/
 src/Tokens/
 src/WorldData/
+package-lock.json
