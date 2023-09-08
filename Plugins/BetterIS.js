@@ -52,21 +52,7 @@ module.exports = {
                 console.log(data);
             });
 
-            const world = this.player.world;
-
-
-
-
-            setInterval(() => {
-                //  ...drawTable(this.player.inventory);
-            }, 15000);
-
-
             this.WebServer();
-
-
-
-
         } catch (e) { console.log(e) }
     },
 
@@ -104,5 +90,4 @@ module.exports = {
             console.log(`Server is running on http://localhost:${port}`);
         });
     }
-
 }
