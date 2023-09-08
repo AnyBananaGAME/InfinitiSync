@@ -68,9 +68,7 @@ player.on(StartGameEvent.name, /** @param {StartGameEventData} data */(data) => 
     */
 })
 
-
-/** Data will be undefined here future me! */
-player.on(SpawnEvent.name, async (data) => {
+player.on(SpawnEvent.name, async () => {
     const plugins = fs.readdirSync("./Plugins").filter((file) => file.endsWith(".js"));
 
     plugins.forEach(async file => {
