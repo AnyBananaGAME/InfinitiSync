@@ -1,8 +1,8 @@
 const fs = require("fs");
 
-const version = require('prismarine-registry')('bedrock_1.20.10');
+const version = require("prismarine-registry")("bedrock_1.20.10");
 const mcData = require("minecraft-data")(version.version.majorVersion);
-const block = require('prismarine-block')(version);
+const block = require("prismarine-block")(version);
 
 const { createClient } = require("bedrock-protocol");
 const { PlayerState } = require("prismarine-physics");
@@ -19,13 +19,13 @@ const { SpawnEvent } = require("./src/Events/Server/SpawnEvent");
 const { StartGameEventData } = require("./index");
 
 const client = createClient({
-    host: "ServerIP",
-    username: "UserName",
-    port: 19132,
-    profilesFolder: "./src/Tokens",
-    raknetBackend: "raknet-native",
-    skipPing: true
-})
+	host: "ServerIP",
+	username: "UserName",
+	port: 19132,
+	profilesFolder: "./src/Tokens",
+	raknetBackend: "raknet-native",
+	skipPing: true
+});
 
 /** @type {Player} player */
 const player = new Player(client);
@@ -36,16 +36,16 @@ player.world = world;
 world.initialize();
 
 player.on(StartGameEvent.name, /** @param {StartGameEventData} data */(data) => {
-    const position = data.getPosition();
-    console.log(position)
+	const position = data.getPosition();
+	console.log(position);
 
-    player.entity.position = position;
-    player.runtime_entity_id = data.getEntityRuntimeId();
+	player.entity.position = position;
+	player.runtime_entity_id = data.getEntityRuntimeId();
 
-    // console.log("data");
-    // console.log(client.startGameData)
+	// console.log("data");
+	// console.log(client.startGameData)
 
-    /*
+	/*
     const SubChunkPacket = new ClientSubChunkRequestPacket();
     SubChunkPacket.isQueued = true;
     SubChunkPacket.dimension = 0;
@@ -66,40 +66,40 @@ player.on(StartGameEvent.name, /** @param {StartGameEventData} data */(data) => 
     console.log("Sent " + SubChunkPacket.name);
     console.log(SubChunkPacket.origin);
     */
-})
+});
 
 player.on(SpawnEvent.name, async () => {
-    const plugins = fs.readdirSync("./Plugins").filter((file) => file.endsWith(".js"));
+	const plugins = fs.readdirSync("./Plugins").filter((file) => file.endsWith(".js"));
 
-    plugins.forEach(async file => {
-        const plugin = require("./Plugins/" + file);
+	plugins.forEach(async file => {
+		const plugin = require("./Plugins/" + file);
 
-        await plugin.onLoad(player);
-        console.log("Loaded plugin " + plugin.name);
-        await plugin.onEnable()
-        console.log("Enabled plugin " + plugin.name);
+		await plugin.onLoad(player);
+		console.log("Loaded plugin " + plugin.name);
+		await plugin.onEnable();
+		console.log("Enabled plugin " + plugin.name);
 
-        player.isConnected = true;
-    })
+		player.isConnected = true;
+	});
 
-    const position = player.client.startGameData.player_position;
-    player.entity.position = new Vec3(position.x, position.y, position.z);
-    player.playerState = new PlayerState(player, player.controls);
-})
+	const position = player.client.startGameData.player_position;
+	player.entity.position = new Vec3(position.x, position.y, position.z);
+	player.playerState = new PlayerState(player, player.controls);
+});
 
 player.client.on("subchunk", (chunk) => {
-    console.log("RECEIVED SUBCHUNK!");
-    console.log(chunk);
-})
+	console.log("RECEIVED SUBCHUNK!");
+	console.log(chunk);
+});
 
 player.on(InventoryContentEvent.name, async (data) => {
-    if (data.window_id === "inventory") {
-        const inventoryItems = data.input.filter(item => item);
+	if (data.window_id === "inventory") {
+		const inventoryItems = data.input.filter(item => item);
 
-        let i = 0;
-        inventoryItems.forEach(item => {
-            player.setSlot(i, item);
-            i++;
-        });
-    }
-})
+		let i = 0;
+		inventoryItems.forEach(item => {
+			player.setSlot(i, item);
+			i++;
+		});
+	}
+});

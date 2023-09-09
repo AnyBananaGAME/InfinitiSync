@@ -1,62 +1,62 @@
 const { ClientPacket } = require("./type/ClientPacket");
 
 class ClientDropItemPacket extends ClientPacket {
-  name = "inventory_transaction";
-  isQueued = true;
+	name = "inventory_transaction";
+	isQueued = true;
 
 
-  /**
+	/**
    * 
    * @param {Array} item 
    * @param {Number} count 
    * @param {Number} slot 
    */
-  constructor(item, count, slot, randomId) {
-    super();
-    this.slot = slot;
-    this.count = count;
-    this.item = item;
-    console.log(this.item);
-    this.randomId = randomId;
+	constructor(item, count, slot, randomId) {
+		super();
+		this.slot = slot;
+		this.count = count;
+		this.item = item;
+		console.log(this.item);
+		this.randomId = randomId;
 
-    this.newItem = JSON.parse(JSON.stringify(item));
-    console.log(this.newItem);
-    this.newItem.count = count;
+		this.newItem = JSON.parse(JSON.stringify(item));
+		console.log(this.newItem);
+		this.newItem.count = count;
 
-    this.newItem2 = JSON.parse(JSON.stringify(item));
-    console.log(this.newItem2);
-    this.newItem2.count = Math.floor(item.count - count);
-    if (this.newItem2.count === 0) {
-      this.newItem2 = this.old_item1;
-    }
-    console.log(`${count}  ${this.item.count}  ${this.newItem.count}   ${this.newItem2.count}`)
-  }
-
-
-  /** @type {Number} */
-  slot;
-  /** @private */
-  count;
-  /** * @type {Array}*/
-  item;
-  newItem;
-  newItem2;
-  randomId;
+		this.newItem2 = JSON.parse(JSON.stringify(item));
+		console.log(this.newItem2);
+		this.newItem2.count = Math.floor(item.count - count);
+		if (this.newItem2.count === 0) {
+			this.newItem2 = this.old_item1;
+		}
+		console.log(`${count}  ${this.item.count}  ${this.newItem.count}   ${this.newItem2.count}`);
+	}
 
 
-  /** @private */
-  old_item1 = {
-    network_id: 0,
-    count: undefined,
-    metadata: undefined,
-    has_stack_id: undefined,
-    stack_id: undefined,
-    block_runtime_id: undefined,
-    extra: undefined
-  }
+	/** @type {Number} */
+	slot;
+	/** @private */
+	count;
+	/** * @type {Array}*/
+	item;
+	newItem;
+	newItem2;
+	randomId;
 
-  data() {
-    /*
+
+	/** @private */
+	old_item1 = {
+		network_id: 0,
+		count: undefined,
+		metadata: undefined,
+		has_stack_id: undefined,
+		stack_id: undefined,
+		block_runtime_id: undefined,
+		extra: undefined
+	};
+
+	data() {
+		/*
       const dataa = {
         transaction: {
           legacy: {
@@ -91,43 +91,42 @@ class ClientDropItemPacket extends ClientPacket {
       }
       console.log(dataa.transaction.actions);
       */
-    return {
-      transaction: {
-        legacy: {
-          legacy_request_id: this.randomId,
-          legacy_transactions: [
-            { container_id: 29, changed_slots: [{ slot_id: this.slot }] }
-          ]
-        },
-        transaction_type: 'normal',
-        actions: [
-          {
-            source_type: 'world_interaction',
-            inventory_id: undefined,
-            action: undefined,
-            flags: 0,
-            slot: 0,
-            old_item: this.old_item1,
-            new_item: this.newItem
-          },
-          {
-            source_type: 'container',
-            inventory_id: 'inventory',
-            action: undefined,
-            flags: undefined,
-            slot: this.slot,
-            old_item: this.item,
-            new_item: this.newItem2
-          }
-        ],
-        transaction_data: undefined
-      }
-    };
+		return {
+			transaction: {
+				legacy: {
+					legacy_request_id: this.randomId,
+					legacy_transactions: [
+						{ container_id: 29, changed_slots: [{ slot_id: this.slot }] }
+					]
+				},
+				transaction_type: "normal",
+				actions: [
+					{
+						source_type: "world_interaction",
+						inventory_id: undefined,
+						action: undefined,
+						flags: 0,
+						slot: 0,
+						old_item: this.old_item1,
+						new_item: this.newItem
+					},
+					{
+						source_type: "container",
+						inventory_id: "inventory",
+						action: undefined,
+						flags: undefined,
+						slot: this.slot,
+						old_item: this.item,
+						new_item: this.newItem2
+					}
+				],
+				transaction_data: undefined
+			}
+		};
 
-  }
+	}
 }
-module.exports = { ClientDropItemPacket }
-
+module.exports = { ClientDropItemPacket };
 
 
 /*

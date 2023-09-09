@@ -1,19 +1,19 @@
-const { ServerEvent } = require("../ServerEvent")
+const { ServerEvent } = require("../ServerEvent");
 
 class ClientPlayerAuthInputEvent extends ServerEvent{
-    name = "ClientPlayerAuthInputEvent";
+	name = "ClientPlayerAuthInputEvent";
 
-    packet;
-    events;
+	packet;
+	events;
 
-    constructor(packet, events) {
-        super()
-        this.packet = packet;
-        this.events = events;
-    }
-    call(){
-        this.events.emit(this.name, this.packet);
-    }
+	constructor(packet, events) {
+		super();
+		this.packet = packet;
+		this.events = events;
+	}
+	call(){
+		this.events.emit(this.name, this.packet);
+	}
 }
 
-module.exports = {ClientPlayerAuthInputEvent}
+module.exports = {ClientPlayerAuthInputEvent};

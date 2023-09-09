@@ -1,24 +1,24 @@
 const { ClientPacket } = require("./type/ClientPacket");
 
 class ClientSubChunkRequestPacket extends ClientPacket {
-    name = "subchunk_request";
-    isQueued = true;
+	name = "subchunk_request";
+	isQueued = true;
 
-    dimension;
-    origin;
-    requests;
+	dimension;
+	origin;
+	requests;
 
-    constructor(player) {
-        super();
-    }
+	constructor(player) {
+		super();
+	}
 
 
-    data() {
-        return {
-            dimension: this.dimension,
-            origin: this.origin,
-            requests: this.requests
-        }
-    }
+	data() {
+		return {
+			dimension: this.dimension,
+			origin: this.origin,
+			requests: this.requests
+		};
+	}
 }
-module.exports = { ClientSubChunkRequestPacket }
+module.exports = { ClientSubChunkRequestPacket };
