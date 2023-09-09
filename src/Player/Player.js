@@ -165,11 +165,11 @@ class Player {
 	}
 
 	/**
-   * Drop an item from inventory
-   *
-   * @param {number} count
-   * @param {number} slot
-   */
+     * Drop an item from inventory
+     *
+     * @param {number} count
+     * @param {number} slot
+     */
 	dropItem(count, slot) {
 		if (isNaN(count)) throw new Error("dropItem => Count value must be a number!");
 		if (count <= 0) throw new Error("dropItem => Count value must be greater than 0!");

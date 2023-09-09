@@ -1,4 +1,4 @@
-class ServerPacket{
+class ServerPacket {
 	name;
 	data;
 
@@ -7,8 +7,8 @@ class ServerPacket{
 		this.data = data;
 	}
 
-	data(){
+	data() {
 		return this.data;
 	}
 }
-module.exports = {ServerPacket};
+module.exports = { ServerPacket };

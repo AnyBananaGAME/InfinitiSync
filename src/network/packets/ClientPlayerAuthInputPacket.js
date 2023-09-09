@@ -4,8 +4,7 @@ class ClientPlayerAuthInputPacket extends ClientPacket {
 	name = "player_auth_input";
 	isQueued = true;
 
-
-	constructor(player) {
+	constructor() {
 		super();
 	}
 

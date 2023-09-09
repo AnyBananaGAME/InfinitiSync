@@ -8,10 +8,9 @@ class ClientSubChunkRequestPacket extends ClientPacket {
 	origin;
 	requests;
 
-	constructor(player) {
+	constructor() {
 		super();
 	}
-
 
 	data() {
 		return {

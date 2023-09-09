@@ -1,3 +1,4 @@
+// eslint-disable
 function generateTable(data) {
 	const table = document.getElementById("data-table");
 
