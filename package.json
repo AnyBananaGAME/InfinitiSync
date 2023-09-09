@@ -4,6 +4,9 @@
   "main": "index.js",
   "types": "./index.d.ts",
   "allowSyntheticDefaultImports": true,
+  "scripts": {
+    "format": "npx eslint . --fix"
+  },
   "dependencies": {
     "bedrock-protocol": "3.30.0",
     "bedrock-provider": "3.0.0",
