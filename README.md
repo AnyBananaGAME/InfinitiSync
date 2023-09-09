@@ -31,10 +31,10 @@ Default link will be: http://localhost:3000/api/drop
     ```js
       player.dropItem(count, slot);
     ```
-  - Set Item in slot.
+  - Set item in slot.
 
     > [!WARNING]
-    > You should not use this if you dont know what it may cause
+    > TODO: document why people should not use this function 
     - `{Number} slot`
     - `{Array} item`
 
