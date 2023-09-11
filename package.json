@@ -1,28 +1,24 @@
 {
   "name": "infinitisync",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "types": "./index.d.ts",
   "allowSyntheticDefaultImports": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "npx eslint . --fix"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "bedrock-protocol": "^3.30.0",
-    "bedrock-provider": "^3.0.0",
-    "body-parser": "^1.20.2",
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "leveldb-zlib": "^1.2.0",
-    "prismarine-block": "^1.17.0",
-    "prismarine-chunk": "^1.34.0",
-    "prismarine-physics": "^1.7.0",
-    "prismarine-registry": "^1.7.0",
-    "vec3": "^0.1.8",
-    "zlib": "^1.0.5"
+    "bedrock-protocol": "3.30.0",
+    "bedrock-provider": "3.0.0",
+    "body-parser": "1.20.2",
+    "cors": "2.8.5",
+    "express": "4.18.2",
+    "leveldb-zlib": "1.2.0",
+    "prismarine-block": "1.17.0",
+    "prismarine-chunk": "1.34.0",
+    "prismarine-physics": "1.7.0",
+    "prismarine-registry": "1.7.0",
+    "vec3": "0.1.8",
+    "zlib": "1.0.5"
   }
 }

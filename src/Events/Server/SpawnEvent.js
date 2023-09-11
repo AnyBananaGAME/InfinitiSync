@@ -1,18 +1,18 @@
 const { ServerEvent } = require("../ServerEvent");
 
 class SpawnEvent extends ServerEvent {
-    name = "SpawnEvent";
+	name = "SpawnEvent";
 
-    packet;
-    events;
+	packet;
+	events;
 
-    constructor(packet, events) {
-        super()
-        this.packet = packet;
-        this.events = events;
-    }
-    call(){
-        this.events.emit(this.name, this.packet);
-    }
+	constructor(packet, events) {
+		super();
+		this.packet = packet;
+		this.events = events;
+	}
+	call(){
+		this.events.emit(this.name, this.packet);
+	}
 }
-module.exports = {SpawnEvent}
+module.exports = {SpawnEvent};

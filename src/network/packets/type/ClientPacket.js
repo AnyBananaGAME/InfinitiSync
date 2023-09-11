@@ -1,11 +1,11 @@
 class ClientPacket{
-    isQueued;
-    name;
+	isQueued;
+	name;
 
-    constructor(name) {
-        this.name = name;
-    }
+	constructor(name) {
+		this.name = name;
+	}
 
-    data(){}
+	data(){}
 }
-module.exports = {ClientPacket}
+module.exports = {ClientPacket};
